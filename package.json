@@ -1,0 +1,16 @@
+{
+  "name": "space-coinz",
+  "version": "0.0.1",
+  "description": "Crypto-currency for Spaceout.VR virtual reality app",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SpaceoutVR, Inc.",
+  "license": "ISC",
+  "dependencies": {
+  }
+}
