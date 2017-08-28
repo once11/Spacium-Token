@@ -1,7 +1,5 @@
-// var SpaceCoinZ = artifacts.require("./SpaceCoinZ.sol");
-var PreSale = artifacts.require("./PreSale.sol");
+var SpaceCoinZ = artifacts.require("./SpaceCoinZ.sol");
 
 module.exports = function(deployer) {
-  // deployer.deploy(SpaceCoinZ);
-  deployer.deploy(PreSale);
+  deployer.deploy(SpaceCoinZ);
 };
