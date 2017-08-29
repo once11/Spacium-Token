@@ -1,3 +1,5 @@
+pragma solidity ^0.4.11;
+
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
 import "./SPCG.sol";
 
@@ -25,7 +27,7 @@ contract PreSale {
     }
 
     /* The function without name is the default function that is called whenever anyone sends funds to a contract */
-    function () {
+    function () payable{
         uint amount = msg.value;
         funders[funders.length++] = Funder({addr: msg.sender, amount: amount});
         amountRaised += amount;
