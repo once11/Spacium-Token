@@ -12,5 +12,6 @@
   "author": "SpaceoutVR, Inc.",
   "license": "ISC",
   "dependencies": {
+    "zeppelin-solidity": "^1.2.0"
   }
 }
