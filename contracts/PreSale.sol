@@ -20,10 +20,10 @@ contract PreSale {
     }
 
     /*  at initialization, setup the owner */
-    function PreSale(address _beneficiary, uint _price, SPCGToken _reward) {
+    function PreSale(address _beneficiary, uint _price, address _token) {
         beneficiary = _beneficiary;
         price = _price;
-        tokenReward = SPCGToken(_reward);
+        tokenReward = SPCGToken(_token);
     }
 
     /* The function without name is the default function that is called whenever anyone sends funds to a contract */

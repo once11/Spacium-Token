@@ -11,9 +11,12 @@ contract SPCGToken is StandardToken {
 
   string public name = "SPCG Token";
   string public symbol = "SPCG";
-  uint256 public decimals = 18;
+  uint256 public decimals = 2;
+  uint256 public INITIAL_SUPPLY = 10000000;
 
   function SPCGToken() {
+    totalSupply = INITIAL_SUPPLY;
+    balances[msg.sender] = INITIAL_SUPPLY;
   }
 
 }
