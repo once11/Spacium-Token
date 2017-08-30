@@ -1,7 +1,7 @@
 pragma solidity ^0.4.11;
 
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
-import "./SPCG.sol";
+import "./SPCGToken.sol";
 
 contract PreSale {
   using SafeMath for uint;

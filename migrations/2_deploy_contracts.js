@@ -1,5 +1,6 @@
 // var SpaceCoinZ = artifacts.require("./SpaceCoinZ.sol");
-var SPCG = artifacts.require("SPCG");
+var SPCG = artifacts.require("./SPCGToken.sol");
+var PreSale = artifacts.require("./PreSale.sol");
 
 module.exports = function(deployer) {
   deployer.deploy(SPCG).then(function(){

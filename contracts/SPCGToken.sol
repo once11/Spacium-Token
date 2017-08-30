@@ -1,13 +1,13 @@
 pragma solidity ^0.4.11;
 
-import "zeppelin-solidity/contracts/token/ERC20.sol";
+import "zeppelin-solidity/contracts/token/StandardToken.sol";
 
 /**
  * @title SPCGToken
  *
  * @dev ERC20 token
  */
-contract SPCGToken is ERC20 {
+contract SPCGToken is StandardToken {
 
   string public name = "SPCG Token";
   string public symbol = "SPCG";
