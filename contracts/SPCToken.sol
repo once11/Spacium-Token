@@ -60,6 +60,16 @@ contract SPCToken is StandardToken, Pausable {
           reward = reward.add(1 ether);
           // don't add extra bonus any more
           spacers[key] = 2;
+        }else{
+          // only spacers can buy with 0 eth
+          if(msg.value < 0.1 ether){
+            return;
+          }
+        }
+      }else{
+        // after presale minimum is always 0.1 ETH
+        if(msg.value < 0.1 ether){
+          return;
         }
       }
 

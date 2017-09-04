@@ -62,16 +62,16 @@ contract('SPCToken', function(accounts) {
   });
 
   it("During pre-sale, SPC worth half the price", async function () {
-    await this.instance.sendTransaction({value: this.token_price, from: accounts[1]});
+    await this.instance.sendTransaction({value: 80 * this.token_price, from: accounts[1]});
     const balance = await this.instance.balanceOf(accounts[1]);
-    assert.equal(balance.valueOf(), 2 * 10 ** 18, "should receive SPC when sending ethers");
+    assert.equal(balance.valueOf(), 160 * 10 ** 18, "should receive SPC when sending ethers");
   });
 
   it("After the pre-sale, SPC worth the exact price", async function () {
     await this.instance.finishPreSale();
-    await this.instance.sendTransaction({value: this.token_price, from: accounts[1]});
+    await this.instance.sendTransaction({value: 80 * this.token_price, from: accounts[1]});
     const balance = await this.instance.balanceOf(accounts[1]);
-    assert.equal(balance.valueOf(), 1 * 10 ** 18, "should receive SPC when sending ethers");
+    assert.equal(balance.valueOf(), 80 * 10 ** 18, "should receive SPC when sending ethers");
   });
 
   it("Registered Spacers must get their free token", async function () {
@@ -113,6 +113,21 @@ contract('SPCToken', function(accounts) {
     assert.equal(state_of_spacer.valueOf(), 2, "spacers who claimed the free token must be in claimed state");
   });
 
+  it("Minimum transaction for non spacers is 0.1 ETH", async function () {
+    await this.instance.sendTransaction({value: 0.05 * 10 ** 18, from: accounts[1]});
+    const balance = await this.instance.balanceOf(accounts[1]);
+    assert.equal(balance.valueOf(), 0, "can't buy less than 0.1 ETH");
+  });
+
+  it("Minimum transaction after pre-sale is 0.1 ETH", async function () {
+    const spacerHash = '0x2c788263cedb7547eab69c7d70fdb9a8b8b1d2229ff3215b31f41685cbfdb8c8f3aa27ddd64538c49129d08bba6eddca2e722b78c14d4e525c05b1edfa05ec68';
+    await this.instance.addSpacer(spacerHash);
+    await this.instance.finishPreSale();
+    await this.instance.sendTransaction({value: 0.05 * 10 ** 18, from: accounts[1], data:spacerHash});
+    const balance = await this.instance.balanceOf(accounts[1]);
+    assert.equal(balance.valueOf(), 0, "can't buy less than 0.1 ETH");
+  });
+
   it("Must be tradeable", async function () {
     await this.instance.transfer(accounts[1], 1 * 10 ** 18);
     const balance_0 = await this.instance.balanceOf(accounts[0]);
@@ -122,16 +137,16 @@ contract('SPCToken', function(accounts) {
   });
 
   it("Must get correct statistics", async function () {
-    await this.instance.sendTransaction({value: this.token_price, from: accounts[1]});
+    await this.instance.sendTransaction({value: 80 * this.token_price, from: accounts[1]});
     const amountRaised = await this.instance.amountRaised();
     const tokensSold = await this.instance.tokensSold();
-    assert.equal(amountRaised.valueOf(), this.token_price, "1 ether must be rised");
-    assert.equal(tokensSold.valueOf(), 2 * 10 ** 18, "1 SPC must be sold");
+    assert.equal(amountRaised.valueOf(), 80 * this.token_price, "1 ether must be rised");
+    assert.equal(tokensSold.valueOf(), 160 * 10 ** 18, "1 SPC must be sold");
   });
 
   // TODO:
   // should be paused / un paused
   // only the owner can pause / un pause
-  
+
 
 });
